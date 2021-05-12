@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <!-- CreateJSのライブラリー読み込み -->
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+
+    <!-- ParticleJSのライブラリー読み込み -->
+    <script src="https://cdn.rawgit.com/ics-creative/ParticleJS/release/1.0.0/libs/particlejs.min.js"></script>
+    <title>Portfolio</title>
+</head>
+<body>
+    <div class="back">
+        <div class="canvas-wrapper">
+            <canvas width="2000" height="1024"  id="myCanvas"></canvas>
+        </div>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                  <li><a href="#top" id="link-1" class="scroll-anime">TOP</a></li>
+                  <li><a href="#about" id="link-2">ABOUT</a></li>
+                  <li><a href="#skills" id="link-3">SKILLS</a></li>
+                  <li><a href="#service" id="link-4">SERVICE</a></li>
+                  <li><a href="#works" id="link-5">WORKS</a></li>
+                  <li><a href="#contact" id="link-6">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+        <div class="modal">
+            <div class="container">
+                <div class="bigimg"><img src="" alt=""></div>
+                <div class="work-text">
+                    <h2 id="work-title"></h2>
+                    <p id="work-detail"></p>
+                    <p id="work-skill"></p>
+                    <a href="">link</a>
+                </div>
+            </div>
+            <div class="close-modal">
+                <i class="fa fa-2x fa-times"></i>
+            </div>
+        </div>
+    <div class="top-wrapper wrapper-1" id="top">
+        <div id="black-effect">
+        <div class="container container-bottom">
+            <svg xmlns="http://www.w3.org/2000/svg">
+                <text  x="50%" y="50%" text-anchor="middle" dominant-baseline="central">Shin Tamakuma</text>
+            </svg>
+            <p>Web Developer</p>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="wrapper wrapper-2" id="about">
+            <div class="container container-bottom">
+                <div class="subtitle">
+                    <h2 id="subtitle-2">About Me</h2>
+                </div>
+                <div class="profile contents down-to-top-2">
+                    <div class="profile-image">
+                        <img src="img/self1.jpg" alt="profile">
+                        <img class="img2" src="img/self2.jpg" alt="profile">
+                    </div>
+                    <div class="profile-text">
+                        <p>
+                            はじめまして。Shinと申します。<br>
+                            都内でパーソナルトレーナー兼Webエンジニアとして活動しております。<br>
+                            主にフロントエンドエンジニアとして、Webサイト制作およびWebアプリケーションの開発を中心としております。<br>
+                            期待以上の「クオリティ」を実現するとともに、「スピード」を意識した仕事を、責任をもって取り組ませていただきます。
+                        </p>
+                        <p>
+                            1993年：東京都千代田区出身<br>
+                            2016年：専修大学経済学部経済学科卒業<br>
+                            2019年：NPCJビーフ佐々木クラシックフィジークノービス5位入賞
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="wrapper wrapper-3" id="skills">
+            <div class="container container-bottom">
+                <div class="subtitle">
+                    <h2 id="subtitle-3">Skills</h2>
+                </div>
+                <div class="contents down-to-top-3">
+                    <div class="skill-set">
+                        <h3 class="skill-title skill-select frontend">FRONTEND</h3>
+                        <h3 class="skill-title backend">BACKEND</h3>
+                    </div>
+                    <div class="frontend-skills">
+                        <div  class="skill">
+                            <div class="skill-img">
+                                <img src="img/HTML.png" art="html">
+                            </div>
+                            <div class="skill-detail">
+                                <h4>HTML</h4>
+                                <div class="skill-level">
+                                    <p>Level：</p>
+                                    <div class="level">★★★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="skill">
+                            <div class="skill-img">
+                                <img src="img/CSS.png" art="html">
+                            </div>
+                            <div class="skill-detail">
+                                <h4>CSS</h4>
+                                <div class="skill-level">
+                                    <p>Level：</p>
+                                    <div class="level">★★★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="skill">
+                            <div class="skill-img">
+                                <img src="img/JS.png" art="html">
+                            </div>
+                            <div class="skill-detail">
+                                <h4>JS</h4>
+                                <div class="skill-level">
+                                    <p>Level：</p>
+                                    <div class="level">★★★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="backend-skills hide">
+                        <div  class="skill">
+                            <div class="skill-img">
+                                <img src="img/python.png" art="html">
+                            </div>
+                            <div class="skill-detail">
+                                <h4>Python</h4>
+                                <div class="skill-level">
+                                    <p>Level：</p>
+                                    <div class="level">★★★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="skill">
+                            <div class="skill-img">
+                                <img src="img/php.png" art="html">
+                            </div>
+                            <div class="skill-detail">
+                                <h4>PHP</h4>
+                                <div class="skill-level">
+                                    <p>Level：</p>
+                                    <div class="level">★★★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="skill">
+                            <div class="skill-img">
+                                <img src="img/MySQL.png" art="html">
+                            </div>
+                            <div class="skill-detail">
+                                <h4>MySQL</h4>
+                                <div class="skill-level">
+                                    <p>Level：</p>
+                                    <div class="level" id="mysql-level">★★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="skill">
+                            <div class="skill-img">
+                                <img src="img/wordpress.jpg" art="html">
+                            </div>
+                            <div class="skill-detail">
+                                <h4>WordPress</h4>
+                                <div class="skill-level">
+                                    <p>Level：</p>
+                                    <div class="level">★★★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="skill">
+                            <div class="skill-img">
+                                <img src="img/aws.png" art="html">
+                            </div>
+                            <div class="skill-detail">
+                                <h4>AWS</h4>
+                                <div class="skill-level">
+                                    <p>Level：</p>
+                                    <div class="level" id="aws-level">★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="skill">
+                            <div class="skill-img">
+                                <img src="img/github.png" art="html">
+                            </div>
+                            <div class="skill-detail">
+                                <h4>GitHub</h4>
+                                <div class="skill-level">
+                                    <p>Level：</p>
+                                    <div class="level">★★★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper wrapper-4" id="service">
+            <div class="container container-bottom">
+                <div class="subtitle">
+                    <h2 id="subtitle-4">Service</h2>
+                </div>    
+                <div class="services contents down-to-top-4">
+                    <div class="service-back">
+                        <div class="service">
+                            <div class="service-title">
+                                <h3>コーディング</h3>
+                            </div>
+                            <div class="service-contents">
+                                <div class="service-text">
+                                    <p>
+                                        コーポレートサイトやランディングページなどの制作・修正を承っております。目的に応じて正確なコーディングを行い、ご期待以上のものを提供いたします。
+                                    </p>
+                                </div>
+                                <div class="service-price">
+                                    <p>【料金目安】</p>
+                                    <p>コード修正: ¥10,000~/1p</p>
+                                    <p>LP制作: ¥20,000~/1p</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service">
+                            <div class="service-title">
+                                <h3>Wordpress</h3>
+                                <div class="service-contents">
+                                    <div class="service-text">
+                                        <p>
+                                            コーポレートサイトやブログなどのWordPressサイトの構築を承っております。構築だけでなく、既存のサイトの移行や修正も対応いたします。
+                                        </p>
+                                    </div>  
+                                    <div class="service-price">
+                                        <p>【料金目安】</p>
+                                        <p>Wordpress移行: ¥100,000~</p>
+                                        <p>Wordpress制作: ¥200,000~</p>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper wrapper-5" id="works">
+            <div class="container container-bottom">
+                <div class="subtitle">
+                    <h2 id="subtitle-5">Works</h2>
+                </div>
+                <div class="work-list contents down-to-top-5">
+                    <div class="work">
+                        <img src="img/portfolio.png" alt="portfolio">
+                        <p>Shin Tamakuma(ポートフォリオサイト)</p>
+                    </div>
+                    <div class="work">
+                        <img src="img/workout-plan.png" alt="portfolio">
+                        <p>Workout-plan</p>
+                    </div>
+                    <div class="work">
+                        <img src="img/portfolio.png" alt="portfolio">
+                        <p>Shin Tamakuma(ポートフォリオサイト)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper wrapper-6" id="contact">
+            <div class="container container-bottom">
+                <div class="subtitle">
+                    <h2 id="subtitle-6">Contact</h2>
+                </div>
+                <div class="contact contents down-to-top-6">
+                    <p>ご依頼のお問い合わせは、メールまたはSNSよりお願いいたします。</p>
+                    <div class="mail">
+                        <a href="mailto:tamakumashin@gmail.com" class="mail-btn">
+                            <span class="icon-wrapper">
+                                <i class="fas fa-envelope icon"></i>
+                            </span>
+                            <span class="text">MAIL</span>
+                        </a>
+                    </div>
+                    <div class="sns">
+                        <div class="twitter">
+                            <a href="https://twitter.com/shin_tama_fit" class="twitter-btn">
+                                <span class="icon-wrapper">
+                                    <i class="fab fa-twitter icon"></i>
+                                </span>
+                                <span class="text">Twitter</span>
+                            </a>
+                        </div>
+                        <div class="instagram">
+                            <a href="https://www.instagram.com/shin_tama1/" class="instagram-btn">
+                                <span class="instagram-icon icon-wrapper">
+                                    <i class="fab fa-instagram icon"></i>
+                                </span>
+                                <span class="text">Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <p>Copyright © 2021 Shin Tamakuma All Rights Reserved.</p>
+        </div>
+    </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
