@@ -2,10 +2,14 @@ $(function(){
     $(window).resize(function(){
         var w = $(window).width();
         var x = 990;
+        var modal_x = 650;
         if (w <= x) {
             $("svg text").attr("y", "80%");
         } else {
             $("svg text").attr("y", "50%");
+        }
+        if (w > modal_x) {
+            $(".menu_modal").hide();
         }
     });
 
@@ -16,14 +20,16 @@ $(function(){
       });
 
     //headerのリンクをクリックしたときのリンク内遷移処理
-    var headerHight = $("header").height();
     $("header a").click(function() {
         var headerHight = $("header").height();
         var id = $(this).attr("href");
-        var position = $(id).offset().top -  66;
+        var position = $(id).offset().top -  headerHight;
         $("html, body").animate({
             "scrollTop": position
-        }, 1000);
+        }, 2000);
+        $(".menu_modal").fadeOut(2000);
+        $("body,html").css("overflow-y", "visible");
+
     });
 
     $(".work img").click(function() {
@@ -41,6 +47,8 @@ $(function(){
             work_text("Skill：HTML/CSS/JS", "このサイト（ポートフォリオ）になります。", "#");
         } else if (title === "Workout-plan") {
             work_text("Skill：HTML/CSS/JS/Python(Django)/MySQL/AWS", "トレーニングスケジュール管理アプリになります。", "http://workout-plan.work/");
+        } else if (title === "Dog cafe Apricot 様") {
+            work_text("Skill：HTML/CSS/JS/wordpress", "南砂町にあるDog cafe 「Apricot」のWEBサイトです。", "http://www.dog-cafe-apricot.tokyo/");
         }
 
         $(".modal").fadeIn();
@@ -50,30 +58,40 @@ $(function(){
 
     $(".close-modal").click(function() {
         $(".modal").fadeOut();
+        $(".menu_modal").fadeOut();
+        
         $("body,html").css("overflow-y", "visible");
         return false
       });
+    
+    $(".hamburger-menu").click(function() {
+
+        $(".menu_modal").fadeIn();
+
+        $("body,html").css("overflow-y", "hidden");
+        return false
+    });
 
     //scroll時のイベント
-    $(window).scroll(function() {
+   $(window).scroll(function() {
         
-        var current_position = $("html,body").scrollTop() + 100;
+        var current_position = $("html,body").scrollTop() + 200;
 
         for (let i = 0; i < 6; i++) {
             
             var num = i + 1
             var position_id = ".wrapper-" + String(num);
             var position = $(position_id).offset().top;
-            var prev_id = "#" + "link-" + String(num - 1);
+            var prev_id = "." + "link-" + String(num - 1);
             var next_position_id = ".wrapper-" + String(num + 1);
-            var next_id = "#" + "link-" + String(num + 1);
-            var id = "#" + "link-" + String(num)
+            var next_id = "." + "link-" + String(num + 1);
+            var id = "." + "link-" + String(num)
             var background_color = "background-color-" + num;
             var subtitle_id = "#subtitle-" + num;
             var down_to_top = ".down-to-top-" + num;
 
-            function scroll_anime(prev_or_next_id) {
-                $(prev_or_next_id).removeClass("scroll-anime");
+            function scroll_anime() {
+                $("nav ul a").removeClass("scroll-anime");
                 $(id).addClass("scroll-anime");
                 $(".back").removeClass(function(index, className) {
                     return (className.match(/\bbackground-\S+/g) || []).join(' ');
@@ -90,7 +108,7 @@ $(function(){
                 var next_position = $(next_position_id).offset().top;
                 if (position <= current_position && current_position < next_position) {
                     $(next_id).removeClass("scroll-anime");
-                    scroll_anime(prev_id);
+                    scroll_anime();
 
                     if (num === 2) {
                         $(".profile-image img, #subtitle-2, .profile-text p").show();
@@ -113,14 +131,14 @@ $(function(){
                 }
             } else if (num === 6) {
                 if (position <= current_position) {
-                    scroll_anime(prev_id);
+                    scroll_anime();
                     scroll_effect();
                     $(down_to_top).addClass('scrollin');
                 }
             } else {
                 var next_position = $(next_position_id).offset().top;
                 if (current_position < next_position) {
-                    scroll_anime(next_id);
+                    scroll_anime();
                     $(".back").addClass(background_color);
                     $(".profile-image img, #subtitle-2, .profile-text p").hide();
                 }
