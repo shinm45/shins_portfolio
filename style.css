@@ -18,9 +18,23 @@ p, h3, h2, h4 {
 
 body {
   font-family: "Yu Mincho";
+}
+
+body::before {
   background-image: url("img/background.jpg");
   background-size: cover;
-  background-attachment: fixed;
+  /* cover指定できる */
+  content: "";
+  display: block;
+  position: fixed;
+  /* 擬似要素ごと固定 */
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  /* 横幅いっぱい */
+  height: 100vh;
+  /* 縦幅いっぱい */
 }
 
 .wrapper {
@@ -239,6 +253,15 @@ canvas {
 }
 
 /*モーダル*/
+.menu_modal {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  display: none;
+}
+
 .modal {
   position: fixed;
   width: 100%;
@@ -250,7 +273,7 @@ canvas {
 }
 
 .bigimg {
-  min-width: 670px;
+  min-width: 300px;
   width: 80%;
   margin: 50px auto 20px auto;
 }
@@ -261,6 +284,7 @@ canvas {
 
 .work-text {
   text-align: center;
+  margin-bottom: 50px;
 }
 
 .work-text h2, .work-text p {
@@ -283,11 +307,17 @@ canvas {
   color: red;
 }
 
+@media (max-width: 800px) {
+  .work-text {
+    font-size: 12px;
+  }
+}
+
 .fa-times {
   position: absolute;
   top: 20px;
   right: 20px;
-  color: rgba(128, 128, 128, 0.46);
+  color: white;
   cursor: pointer;
 }
 
@@ -296,8 +326,44 @@ header {
   position: fixed;
   z-index: 10;
   width: 100%;
-  padding: 20px 0;
+  height: 66px;
   background-color: rgba(0, 0, 0, 0.8);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .hamburger-menu {
+  display: none;
+  position: fixed;
+  top: 2%;
+  right: 4%;
+  height: 38px;
+  width: 35px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+header .hamburger-menu span {
+  background-color: white;
+  border: none;
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+header .hamburger-menu span:nth-of-type(2) {
+  top: 11px;
+}
+
+header .hamburger-menu span:nth-of-type(3) {
+  top: 22px;
 }
 
 header nav {
@@ -389,11 +455,34 @@ header nav ul .scroll-anime::after {
 }
 
 @media (max-width: 650px) {
-  header nav {
-    width: 100%;
+  header {
+    -webkit-box-align: initial;
+        -ms-flex-align: initial;
+            align-items: initial;
   }
-  header nav ul a {
-    font-size: 12px;
+  header .hamburger-menu {
+    display: inline-block;
+  }
+  header .nav1 {
+    display: none;
+  }
+  header .nav2 {
+    height: 100%;
+  }
+  header .nav2 ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 100%;
+  }
+  header .nav2 ul a {
+    font-size: 25px;
   }
 }
 
@@ -773,6 +862,50 @@ text {
 }
 
 @media (max-width: 990px) {
+  .skill .skill-img {
+    width: 100px;
+    height: 100px;
+  }
+  .skill .skill-img img {
+    width: 60px;
+  }
+  .skill-detail {
+    font-size: 30px;
+  }
+  .skill-detail .skill-level p {
+    font-size: 15px;
+  }
+  .skill-detail .skill-level .level {
+    color: #ffffd7;
+    font-size: 15px;
+    letter-spacing: .3em;
+    -webkit-animation: Flash 1s infinite;
+            animation: Flash 1s infinite;
+    line-height: 23px;
+  }
+  @-webkit-keyframes Flash {
+    50% {
+      text-shadow: 0 0 10px yellow,0 0 15px yellow;
+    }
+  }
+  @keyframes Flash {
+    50% {
+      text-shadow: 0 0 10px yellow,0 0 15px yellow;
+    }
+  }
+  .skill-detail .skill-level #aws-level::after {
+    content: "☆☆";
+    color: white;
+    text-shadow: initial;
+  }
+  .skill-detail .skill-level #mysql-level::after {
+    content: "☆";
+    color: white;
+    text-shadow: initial;
+  }
+}
+
+@media (max-width: 990px) {
   .frontend-skills, .backend-skills {
     display: inline-block;
     width: 100%;
@@ -793,6 +926,7 @@ text {
     display: none;
   }
 }
+
 
 /*Service*/
 .services {
@@ -843,6 +977,7 @@ text {
         flex-wrap: wrap;
     -ms-flex-line-pack: justify;
         align-content: space-between;
+    font-size: 15px;
   }
   .services .service-back .service-contents div {
     width: 100%;
@@ -851,6 +986,10 @@ text {
     width: 100%;
     margin-bottom: 40px;
   }
+}
+
+.services .service-back .annotation {
+  padding: 15px 35px;
 }
 
 /*Work*/
@@ -917,6 +1056,13 @@ text {
   margin-bottom: 100px;
 }
 
+@media (max-width: 990px) {
+  .contact p {
+    font-size: 15px;
+    margin-bottom: 60px;
+  }
+}
+
 .mail {
   margin-bottom: 100px;
   display: -webkit-box;
@@ -925,6 +1071,12 @@ text {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media (max-width: 990px) {
+  .mail {
+    margin-bottom: 50px;
+  }
 }
 
 .mail-btn {
@@ -954,8 +1106,10 @@ text {
 
 @media (max-width: 990px) {
   .mail-btn .text {
-    width: 120px;
-    font-size: 25px;
+    height: 45px;
+    line-height: 45px;
+    width: 100px;
+    font-size: 17px;
   }
 }
 
@@ -969,6 +1123,26 @@ text {
   color: #FFF;
   font-size: 50px;
   line-height: 65px;
+}
+
+@media (max-width: 990px) {
+  .mail-btn .icon-wrapper {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    background: darkorange;
+  }
+  .mail-btn .icon-wrapper .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    color: #FFF;
+    font-size: 30px;
+    line-height: 45px;
+  }
 }
 
 .mail-btn:hover {
@@ -1020,8 +1194,10 @@ text {
 
 @media (max-width: 990px) {
   .twitter-btn .text {
-    width: 120px;
-    font-size: 25px;
+    height: 45px;
+    line-height: 45px;
+    width: 100px;
+    font-size: 17px;
   }
 }
 
@@ -1035,6 +1211,26 @@ text {
   color: #FFF;
   font-size: 50px;
   line-height: 65px;
+}
+
+@media (max-width: 990px) {
+  .twitter-btn .icon-wrapper {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    background: #55acee;
+  }
+  .twitter-btn .icon-wrapper .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    color: #FFF;
+    font-size: 30px;
+    line-height: 45px;
+  }
 }
 
 .twitter-btn:hover {
@@ -1073,8 +1269,10 @@ text {
 
 @media (max-width: 990px) {
   .instagram-btn .text {
-    width: 120px;
-    font-size: 25px;
+    height: 45px;
+    line-height: 45px;
+    width: 100px;
+    font-size: 17px;
   }
 }
 
@@ -1088,6 +1286,26 @@ text {
   color: #FFF;
   font-size: 50px;
   line-height: 65px;
+}
+
+@media (max-width: 990px) {
+  .instagram-btn .icon-wrapper {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;
+  }
+  .instagram-btn .icon-wrapper .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    color: #FFF;
+    font-size: 30px;
+    line-height: 45px;
+  }
 }
 
 .instagram-btn:hover {
@@ -1118,11 +1336,36 @@ text {
   position: relative;
 }
 
+@media (max-width: 990px) {
+  .instagram-btn .instagram-icon {
+    position: relative;
+    overflow: hidden;
+  }
+  .instagram-btn .instagram-icon::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: -5px;
+    width: 45px;
+    height: 45px;
+    background: radial-gradient(#ffdb2c 10%, rgba(255, 105, 34, 0.65) 55%, rgba(255, 88, 96, 0) 70%);
+  }
+  .instagram-btn .instagram-icon .fa-instagram {
+    position: absolute;
+  }
+}
+
 footer {
   text-align: center;
   color: white;
   width: 100%;
   padding: 20px 0;
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 650px) {
+  footer p {
+    font-size: 11px;
+  }
 }
 /*# sourceMappingURL=style.css.map */
